@@ -1,35 +1,25 @@
 <template>
-  <div>
-    <div class="train-controls">
-      <div class="text-center">
-        <div class="text-bold">
-          Vendas de Sorvetes<br />
-          <img src="~assets/sorvete.png" style="height: 100px; width:100px" />
-        </div>
-        Temperatura em Celcius<br />
-        <input
-          class="field element"
-          v-model="valueToPredict"
-          type="number"
-          placeholder="digite um inteiro"
-        />
-        <div class="element">{{ predictedValue }}</div>
-        <button class="element button--green" v-on:click="predict">
-          Predizer Vendas
-        </button>
+  <q-layout class="layoutPagina">
+      <img id="imagemSorvete" src="~assets/imagem_sorvete.jpg" />
+      <q-input class="field element text-dark" maxlength="3" v-model="valorTemperatura" label="Temperatura em Celsius" placeholder="Digite a temperatura..." @reset="limparCampos" />
+      <q-input class="field element text-dark" v-model="valorPreditoLucro" label="Valor do Lucro" readonly/>
+
+      <div class="layoutBotoes">
+        <q-btn id="botaoPredizerLucro" color="primary" label="Predizer Lucro" v-on:click="predizerLucroVendas" />
+        <q-btn id="botaoLimparCampos" color="secondary" label="Limpar Campos" v-on:click="limparCampos" />
       </div>
-    </div>
-  </div>
+  </q-layout>
 </template>
 <script>
 import * as tf from "@tensorflow/tfjs";
 import { fetch as fetchPolyfill } from "whatwg-fetch";
+import { Dialog } from 'quasar'
 
 export default {
   data() {
     return {
-      predictedValue: "Clique em Predizer Vendas",
-      valueToPredict: "",
+      valorPreditoLucro: "",
+      valorTemperatura: "",
       model: tf.sequential()
     };
   },
@@ -53,12 +43,52 @@ export default {
         this.model = await tf.loadLayersModel("model/model.json");
       }
     },
-    predict() {
-      let valor = this.model.predict(
-        tf.tensor2d([this.valueToPredict], [1, 1], "float32")
+    predizerLucroVendas() {
+
+      if(this.valorTemperatura == "") {
+        this.popupTemperaturaNula();
+      }
+      else if(this.valorTemperatura >60 || this.valorTemperatura < -90) {
+        this.popupTemperaturasInvalidas();
+        this.limparCampos();
+      }
+      else {
+        let valor = this.model.predict(
+        tf.tensor2d([this.valorTemperatura], [1, 1], "float32")
       );
 
-      this.predictedValue = "R$" + Number(valor.dataSync()).toFixed(2);
+      this.valorPreditoLucro = "R$ " + Number(valor.dataSync()).toFixed(2);
+      }
+    },
+    limparCampos() {
+      this.valorTemperatura="";
+      this.valorPreditoLucro="";
+    },
+    popupTemperaturaNula(){
+      this.$q.dialog({
+        title: 'Temperatura Nula',
+        message: 'O campo "valor da temperatura" está nulo'
+      }).onOk(() => {
+        // console.log('OK')
+      }).onCancel(() => {
+        // console.log('Cancel')
+      }).onDismiss(() => {
+        // console.log('I am triggered on both OK and Cancel')
+      })
+      this.limparCampos();
+    },
+    popupTemperaturasInvalidas() {
+      this.$q.dialog({
+        title: 'Temperatura Inválida',
+        message: 'Temperaturas maiores que 60ºC ou menores que -90ºC não são aceitas.'
+      }).onOk(() => {
+        // console.log('OK')
+      }).onCancel(() => {
+        // console.log('Cancel')
+      }).onDismiss(() => {
+        // console.log('I am triggered on both OK and Cancel')
+      })
+      this.limparCampos();
     }
   }
 };
