@@ -6,7 +6,7 @@
 
       <div class="layoutBotoes">
         <q-btn id="botaoPredizerLucro" color="primary" label="Predizer Lucro" v-on:click="predizerLucroVendas" />
-        <q-btn id="botaoLimparCampos" color="secondary" label="Limpar Campos" v-on:click="limparCampos" />
+        <q-btn id="botaoLimparCampos" color="primary" label="Limpar Campos" v-on:click="limparCampos" />
       </div>
   </q-layout>
 </template>

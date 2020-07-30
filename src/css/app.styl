@@ -10,12 +10,6 @@
     max-width:90%;
 }
 
-#tituloGeral {
-    text-align:center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 #imagemSorvete {
     width:30%;
     display: block;
@@ -28,19 +22,48 @@
     margin-right:2%;
 }
 
-@media only screen and (max-width: 1024px) {
-    #imagemSorvete {
-        width:90%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top:7.5%;
-        margin-bottom:5%;
-    }
+#botaoSobre {
+    height:10%;
+    width:10%;
+}
 
+@media only screen and (max-width: 1024px) {
     .layoutBotoes {
         text-align:center; 
         margin-top:10%;
+    }
+
+    .layoutPaginaSobre {
+        min-height:100%;
+        max-width:95%;
+        margin-left:2%;
+    }
+    
+    #imagemSorvete {
+        width:99%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top:5%;
+        margin-bottom:5%;
+    }
+
+    #logoSorvete {
+        margin-left:-2.5%;
+        width:15%;
+    }
+
+    #botaoSobre {
+        margin-right: -2%;
+        width:10%;
+    }
+
+    #botaoPredizerLucro {
+        margin-right:4%;
+    }
+    
+    #listaSobre {
+        margin-top:5%;
     }
 }
 

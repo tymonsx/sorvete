@@ -2,9 +2,11 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-toolbar-title id="tituloGeral">
+        <img src="~assets/logo_sorvete.jpg" alt="Logo Sorvete" id="logoSorvete" clickable v-ripple @click="$router.replace('/')"/>
+        <q-toolbar-title id="titutloGeral" clickable v-ripple @click="$router.replace('/')">
           Aplicativo Teste Sorvete
         </q-toolbar-title>
+        <q-btn id="botaoSobre" icon="info" to="/sobre" flat />
       </q-toolbar>
     </q-header>
 
