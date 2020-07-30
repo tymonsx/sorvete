@@ -1,5 +1,5 @@
 <template>
-  <q-layout class="layoutPagina">
+  <q-layout class="layoutHome">
       <img id="imagemSorvete" src="~assets/imagem_sorvete.jpg" />
       <q-input class="field element text-dark" maxlength="3" v-model="valorTemperatura" label="Temperatura em Celsius" placeholder="Digite a temperatura..." @reset="limparCampos" />
       <q-input class="field element text-dark" v-model="valorPreditoLucro" label="Valor do Lucro" readonly/>
@@ -69,12 +69,13 @@ export default {
         title: 'Temperatura Nula',
         message: 'O campo "valor da temperatura" está nulo'
       }).onOk(() => {
-        // console.log('OK')
+        
       }).onCancel(() => {
-        // console.log('Cancel')
+        
       }).onDismiss(() => {
-        // console.log('I am triggered on both OK and Cancel')
+        
       })
+
       this.limparCampos();
     },
     popupTemperaturasInvalidas() {
@@ -82,12 +83,13 @@ export default {
         title: 'Temperatura Inválida',
         message: 'Temperaturas maiores que 60ºC ou menores que -90ºC não são aceitas.'
       }).onOk(() => {
-        // console.log('OK')
+        
       }).onCancel(() => {
-        // console.log('Cancel')
+        
       }).onDismiss(() => {
-        // console.log('I am triggered on both OK and Cancel')
+        
       })
+
       this.limparCampos();
     }
   }
