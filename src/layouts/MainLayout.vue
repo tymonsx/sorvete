@@ -2,7 +2,7 @@
   <q-layout>
     <q-header elevated>
       <q-toolbar>
-        <img src="~assets/logo_sorvete.jpg" alt="Logo Sorvete" id="logoSorvete" clickable v-ripple @click="$router.replace('/')"/>
+        <img src="~assets/logo_sorvete.png" alt="Logo Sorvete" id="logoSorvete" clickable v-ripple @click="$router.replace('/')"/>
         <q-toolbar-title id="titutloGeral" clickable v-ripple @click="$router.replace('/')">
           Aplicativo Teste Sorvete
         </q-toolbar-title>
