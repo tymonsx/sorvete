@@ -10,6 +10,25 @@
       </q-toolbar>
     </q-header>
 
+    <q-footer elevated>
+      <q-toolbar>
+        <q-toolbar-title>
+          <div style="min-width:40px;width:10%; float:left; ">
+            <img style="margin-top: 5px; " width="40px" src="~assets/epm.png" />
+          </div>
+          <div
+            class="text-right"
+            style="min-width:75px; width:10%;float:right;"
+          >
+            <img
+              style="margin-top: 5px; "
+              width="75px"
+              src="~assets/logo_unifesp.png"
+            />
+          </div>
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
     <q-page-container>
       <router-view />
     </q-page-container>
