@@ -1,8 +1,8 @@
 <template>
   <q-layout class="layoutHome">
       <img id="imagemSorvete" src="~assets/imagem_sorvete.jpg" />
-      <q-input class="field element text-dark" maxlength="3" v-model="valorTemperatura" label="Temperatura em Celsius" placeholder="Digite a temperatura..." @reset="limparCampos" />
-      <q-input class="field element text-dark" v-model="valorPreditoLucro" label="Valor do Lucro" readonly/>
+      <q-input class="text-dark" maxlength="3" v-model="valorTemperatura" label="Temperatura em Celsius" placeholder="Digite a temperatura..." @reset="limparCampos" />
+      <q-input class="text-dark" v-model="valorPreditoLucro" label="Valor do Lucro" readonly/>
 
       <div :class="$q.screen.width <= 350 ? 'layoutBotoes row' : 'layoutBotoes'">
         <q-btn id="botaoPredizerLucro" :class="$q.screen.width <= 350 ? 'col' : ''" color="primary" label="Predizer Lucro" v-on:click="predizerLucroVendas" />

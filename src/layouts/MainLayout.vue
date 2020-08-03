@@ -10,35 +10,45 @@
       </q-toolbar>
     </q-header>
 
-    <q-footer elevated>
+    <q-footer>
       <q-toolbar>
         <q-toolbar-title>
-          <div style="min-width:40px;width:10%; float:left; ">
-            <img style="margin-top: 5px; " width="40px" src="~assets/epm.png" />
+          <div>
+            <img id="logoEpm" src="~assets/epm.png"/>
           </div>
-          <div
+          <!--<div
             class="text-right"
-            style="min-width:75px; width:10%;float:right;"
+          >-->
+          <div
+            class="desktop-only text-caption text-center float-left"
+            style="width:80%"
           >
+            Rua Botucatu, 862-Térreo, Vila Clementino, São Paulo (SP). Cep:
+            04023-062 - Email: contato@dis.epm.br - CNPJ:60.453.032/0001-74
+          </div>
             <img
-              style="margin-top: 5px; "
-              width="75px"
+              id="logoUnifesp"
+              class="text-right"
               src="~assets/logo_unifesp.png"
             />
-          </div>
+          <!--</div>-->
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
     <q-page-container>
-      <router-view />
+      <router-view :teste="3" />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
 //import EssentialLink from "components/EssentialLink.vue";
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
 
 export default {
-  name: "MainLayout"
+   name: "MainLayout"
 };
 </script>
