@@ -1,19 +1,49 @@
 <template>
-  <q-layout class="layoutHome">
-      <img id="imagemSorvete" src="~assets/imagem_sorvete.jpg" />
-      <q-input class="text-dark" maxlength="3" v-model="valorTemperatura" label="Temperatura em Celsius" placeholder="Digite a temperatura..." @reset="limparCampos" />
-      <q-input class="text-dark" v-model="valorPreditoLucro" label="Valor do Lucro" readonly/>
+  <q-page class="full-height q-pa-xs q-gutter-sm">
+    <img
+      :style="
+        $q.screen.width > 750
+          ? 'display: block; margin-left:auto; margin-right:auto; width: 30%;'
+          : 'display: block; margin-left:auto; margin-right:auto; width: 70%;'
+      "
+      src="~assets/imagem_sorvete.jpg"
+    />
+    <q-input
+      class="text-dark"
+      :style="
+        $q.screen.width > 750
+          ? 'width:98.5%;margin-left:0.5%;'
+          : 'width:97%; margin-left:2%;'
+      "
+      maxlength="5"
+      v-model="valorTemperatura"
+      label="Temperatura em Celsius"
+      @reset="limparCampos"
+    />
+    <div class="q-pa-lg q-gutter-md text-center">
+      <q-btn
+        id="botaoPredizerLucro"
+        color="primary"
+        label="Predizer Lucro"
+        v-on:click="predizerLucroVendas"
+      />
+      <q-btn
+        id="botaoLimparCampos"
+        color="primary"
+        label="Limpar Campos"
+        v-on:click="limparCampos"
+      />
+    </div>
 
-      <div :class="$q.screen.width <= 350 ? 'layoutBotoes row' : 'layoutBotoes'">
-        <q-btn id="botaoPredizerLucro" :class="$q.screen.width <= 350 ? 'col' : ''" color="primary" label="Predizer Lucro" v-on:click="predizerLucroVendas" />
-        <q-btn id="botaoLimparCampos"  :class="$q.screen.width <= 350 ? 'col' : ''" color="primary" label="Limpar Campos" v-on:click="limparCampos" />
-      </div>
-  </q-layout>
+    <p class="text-h5 text-primary text-center text-bold">
+      Valor do Lucro: {{ valorPreditoLucro }}
+    </p>
+  </q-page>
 </template>
 <script>
 import * as tf from "@tensorflow/tfjs";
 import { fetch as fetchPolyfill } from "whatwg-fetch";
-import { Dialog } from 'quasar'
+import { Dialog } from "quasar";
 
 export default {
   data() {
@@ -44,51 +74,41 @@ export default {
       }
     },
     predizerLucroVendas() {
-
-      if(this.valorTemperatura == "") {
+      if (this.valorTemperatura == "") {
         this.popupTemperaturaNula();
-      }
-      else if(this.valorTemperatura >60 || this.valorTemperatura < -90) {
+      } else if (this.valorTemperatura > 60 || this.valorTemperatura < -90) {
         this.popupTemperaturasInvalidas();
         this.limparCampos();
-      }
-      else {
+      } else {
         let valor = this.model.predict(
-        tf.tensor2d([this.valorTemperatura], [1, 1], "float32")
-      );
+          tf.tensor2d([this.valorTemperatura], [1, 1], "float32")
+        );
 
-      this.valorPreditoLucro = "R$ " + Number(valor.dataSync()).toFixed(2);
+        this.valorPreditoLucro = "R$ " + Number(valor.dataSync()).toFixed(2);
       }
     },
     limparCampos() {
-      this.valorTemperatura="";
-      this.valorPreditoLucro="";
+      this.valorTemperatura = "";
+      this.valorPreditoLucro = "";
     },
-    popupTemperaturaNula(){
-      this.$q.dialog({
-        title: 'Temperatura Nula',
-        message: 'O campo "valor da temperatura" está nulo'
-      }).onOk(() => {
-        
-      }).onCancel(() => {
-        
-      }).onDismiss(() => {
-        
-      })
+    popupTemperaturaNula() {
+      this.$q
+        .dialog({
+          title: "Temperatura Nula",
+          message: 'O campo "valor da temperatura" está nulo'
+        })
+        .onOk(() => {});
 
       this.limparCampos();
     },
     popupTemperaturasInvalidas() {
-      this.$q.dialog({
-        title: 'Temperatura Inválida',
-        message: 'Temperaturas maiores que 60ºC ou menores que -90ºC não são aceitas'
-      }).onOk(() => {
-        
-      }).onCancel(() => {
-        
-      }).onDismiss(() => {
-        
-      })
+      this.$q
+        .dialog({
+          title: "Temperatura Inválida",
+          message:
+            "Temperaturas maiores que 60ºC ou menores que -90ºC não são aceitas"
+        })
+        .onOk(() => {});
 
       this.limparCampos();
     }

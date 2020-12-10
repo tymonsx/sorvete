@@ -1,48 +1,137 @@
 <template>
-  <q-layout class="layoutPaginaSobre">
-    <q-list id="listaSobre">
-      <q-expansion-item
-        label="Fonte do modelo"
-        group="sobre"
-        class="bg-secondary"
-      >
-        <q-card>
-            <q-card-section class="text-dark text-justify">
-               <p>O <b>Aplicativo Teste Sorvete</b> baseia-se no modelo apresentado na <b>"Seção 2: Construção do primeiro perceptron"</b> do curso <b>"Deep Learning Prático com TensorFlow e Python"</b> disponível na plataforma Udemy.</p>
-               <p> O curso foi elaborado pelos seguintes professores: Jones Granatyr, Dr. Ryan Ahmed, Hadelin de Ponteves, Kirill Eremenko, SuperDataScience Team e Mitchell Bouchard.</p>
-               <p>O referido curso está disponível no seguinte link: <a href="#" v-on:click="abrirLink('https://www.udemy.com/course/formacao-deep-learning-tensorflow-python/')">Deep Learning Prático com Tensorflow e Python</a></p>
+  <q-page class="flex flex-center">
+    <div class="text-h5 text-primary q-ma-sm">Sobre o Aplicativo</div>
+    <div style="width: 100%; padding-bottom: 135%;">
+      <q-list>
+        <q-expansion-item
+          :group="$q.screen.width > 1000 ? 'a' : 'sobre_app'"
+          label="Processo de Criação"
+          class="bg-secondary text-justify"
+          :default-opened="$q.screen.width > 1000"
+          :style="
+            $q.screen.width > 1000 ? 'font-size: 18px;' : 'font-size: 16px;'
+          "
+        >
+          <q-card>
+            <q-card-section>
+              <div class="text-justify">
+                <p>
+                O aplicativo foi elaborado utilizando as seguintes ferramentas e
+                bibliotecas: Python, TensorflowJS, Quasar, VueJS,
+                Cordova e Anaconda.
+              </p>
+              <p>
+                A primeira etapa do projeto foi o treinamento da rede neural em
+                Python e o salvamento do modelo na extensão H5.
+              </p> 
+              <p>O próximo passo foi a conversão
+                do modelo gerado para JSON através do TensorflowJS Converter
+              </p>
+              <p>
+                A terceira etapa foi a importação do modelo JSON para dentro do TensorflowJS e a integração do mesmo com o framework Quasar
+              </p>
+              <p>
+                Por último, foi gerado um aplicativo para a plataforma Android utilizando a tecnologia Cordova que já vem integrada no framework Quasar
+              </p>
+              <p>
+                O modelo salvo está disponível no link
+                <a
+                  href="#"
+                  v-on:click="
+                    abrirLink('https://github.com/tymonsx/sorvete_python')
+                  "
+                  >Sorvete_Python</a
+                >
+              </p>
+              <p>
+                O código do aplicativo está disponível no link
+                <a
+                  href="#"
+                  v-on:click="abrirLink('https://github.com/tymonsx/sorvete')"
+                  >Sorvete</a
+                >
+              </p>
+                <p>
+                  Este projeto foi realizado pela equipe de desenvolvimento do Departamento 
+                  de Informática em Saúde - EPM - UNIFESP
+                  <ul>
+                    <li>
+                        Antonio Carlos da Silva Junior: Analista de Tecnologia da Informação no Departamento de Informática em Saúde da UNIFESP.
+                    </li>
+                    <li>
+                        Ivan Calixto Ribeiro: Técnico de Tecnologia da Informação no Departamento de Informática em Saúde da UNIFESP.  
+                    </li>
+                    <li>
+                        Raphael Hendrigo de Souza Gonçalves: Analista de Tecnologia da Informação no Departamento de Informática em Saúde da UNIFESP.
+                    </li>
+                    <li>Vitor Tonini Machado: Arquivista no Departamento de Informática em Saúde e líder do Escritório de Projetos do DIS</li>
+                  </ul>
+                </p>
+              </div>
             </q-card-section>
-        </q-card>
-      </q-expansion-item>
-      <q-expansion-item
-        label="Imagens utilizadas"
-        group="sobre"
-      >
-        <q-card>
-            <q-card-section class="text-dark text-justify">
-                <p>O logo presente no canto superior direito do aplicativo e na tela de carregamento foi elaborado pelo usuário <b>"sceneit"</b> e está disponível no site <b>Vecteezy</b> através dos links <a href="#" v-on:click="abrirLink('https://pt.vecteezy.com/vetor-gratis/creme')">Creme Vetores por Vecteezy</a> e <a href="#" v-on:click="abrirLink('https://pt.vecteezy.com/arte-vetorial/181841-vector-do-logotipo-da-loja-de-cone-de-sorvete')">Vector do Logotipo da Loja de Cone de Sorvete</a></p>
-                <p>A imagem de sorvete presente na home do aplicativo foi elaborada pelo usuário <b>"binamg"</b> e está disponível no site <b>Pixaby</b> através do link <a href="#" v-on:click="abrirLink('https://pixabay.com/photos/bowl-ice-cream-ice-dessert-scoops-1932375')">Bowl Ice Cream</a></p>
+          </q-card>
+        </q-expansion-item>
+        <q-expansion-item
+          :group="$q.screen.width > 1000 ? 'b' : 'sobre_app'"
+          label="Referências Utilizadas"
+          :class="$q.screen.width > 1000 ? 'bg-secondary text-justify' : 'text-justify'"
+          :default-opened="$q.screen.width > 1000"
+          :style="
+            $q.screen.width > 1000 ? 'font-size: 18px;' : 'font-size: 16px;'
+          "
+        >
+          <q-card>
+            <q-card-section>
+              <div class="text-justify">
+                
+                <p>
+                O App Sorvete baseia-se no exemplo de regressão linear utilizando perceptron apresentado no curso
+                <i>Deep Learning Prático com TensorFlow e Python</i>
+                disponível na plataforma Udemy através do link  <a
+                  href="#"
+                  v-on:click="
+                    abrirLink(
+                      'https://www.udemy.com/course/formacao-deep-learning-tensorflow-python/'
+                    )
+                  "
+                  >Deep Learning Prático com Tensorflow e Python</a
+                >
+              </p>
+              <p>
+                O logo presente no canto superior direito e na
+                tela de carregamento foi disponbilizado pelo usuário
+                <i>sceneit</i> no site <i>Vecteezy</i> através do link
+                <a
+                  href="#"
+                  v-on:click="
+                    abrirLink(
+                      'https://pt.vecteezy.com/arte-vetorial/181841-vector-do-logotipo-da-loja-de-cone-de-sorvete'
+                    )
+                  "
+                  >Vector do Logotipo da Loja de Cone de Sorvete</a
+                >
+              </p>
+              <p>
+                A imagem de sorvete presente na página inicial foi disponiblizada
+                pelo usuário <i>binamg</i> no site
+                <i>Pixabay</i> através do link
+                <a
+                  href="#"
+                  v-on:click="
+                    abrirLink(
+                      'https://pixabay.com/photos/bowl-ice-cream-ice-dessert-scoops-1932375'
+                    )
+                  "
+                  >Bowl Ice Cream</a
+                >
+              </p>
+              </div>
             </q-card-section>
-        </q-card>
-      </q-expansion-item>
-      <q-expansion-item
-        label="Processo de criação"
-        group="sobre"
-        class="bg-secondary"
-      >
-        <q-card>
-            <q-card-section class="text-dark text-justify">
-                <p>O aplicativo foi elaborado utilizando as seguintes ferramentas e bibliotecas: Python, TensorflowJS, Tensorflow, Quasar, Vue, Cordova e Anaconda.</p>
-                <p>A primeira etapa do projeto foi o treinamento da rede neural em Python utilizando o Tensorflow. O próximo passo foi a conversão do modelo gerado no formato H5 para os formatos "JSON" e ".bin" (comando <b>"tensorflowjs_wizard"</b> no Anaconda). Por último, foi criado um aplicativo utilizando as tecnologias VueJS, Quasar e Cordova.</p>
-                <p>O modelo salvo em formato h5 está disponível para consulta através do seguinte link <a href="#" v-on:click="abrirLink('https://github.com/tymonsx/sorvete_python')">Modelo H5</a></p>
-                <p>O projeto no Quasar está disponível para consulta através do seguinte link: <a href="#" v-on:click="abrirLink('https://github.com/tymonsx/sorvete')">Projeto Quasar</a></p>
-                <p>A documentação para geração do aplicativo com o Cordova está disponível no seguinte link: <a href="#" v-on:click="abrirLink('https://quasar.dev/quasar-cli/developing-cordova-apps/preparation')">Developing Cordova Apps - Preparation</a></p>
-                <p>A disponibilização dos arquivos no Github bem como a supervisão e elaboração do projeto foram realizadas pelo <b>Sr. Antonio Carlos da Silva Júnior</b>, Analista de Tecnologia da Informação no Departamento de Informática em Saúde da UNIFESP.</p> 
-            </q-card-section>
-        </q-card>
-      </q-expansion-item>
-    </q-list>
-  </q-layout>
+          </q-card>
+        </q-expansion-item>
+      </q-list>
+    </div>
+  </q-page>
 </template>
 
 <script>
