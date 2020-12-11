@@ -125,7 +125,7 @@
                 >
               </p>
               <p>
-                As cores, fonte e logos utilziadas foram guiadas pelo manual da marca da UNIFESP que poder acessado pleo link <a
+                As cores, fontes e logos utilizados foram guiados pelo manual da marca da UNIFESP que pode ser acessado pelo link <a
                   href="#"
                   v-on:click="
                     abrirLink(
