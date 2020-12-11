@@ -54,7 +54,7 @@
       </q-toolbar>
     </q-footer>
     <q-page-container>
-      <router-view :teste="3" />
+      <router-view />
     </q-page-container>
   </q-layout>
 </template>

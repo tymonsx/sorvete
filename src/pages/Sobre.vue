@@ -98,8 +98,7 @@
                 >
               </p>
               <p>
-                O logo presente no canto superior direito e na
-                tela de carregamento foi disponbilizado pelo usuário
+                O logo do aplicativo foi disponbilizado pelo usuário
                 <i>sceneit</i> no site <i>Vecteezy</i> através do link
                 <a
                   href="#"
@@ -123,6 +122,17 @@
                     )
                   "
                   >Bowl Ice Cream</a
+                >
+              </p>
+              <p>
+                As cores, fonte e logos utilziadas foram guiadas pelo manual da marca da UNIFESP que poder acessado pleo link <a
+                  href="#"
+                  v-on:click="
+                    abrirLink(
+                      'https://www.unifesp.br/reitoria/dci/images/docs/manual_da_marca/Manual_marca_Unifesp_03-2017.pdf'
+                    )
+                  "
+                  >Manual da Marca</a
                 >
               </p>
               </div>
