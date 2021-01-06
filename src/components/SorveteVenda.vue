@@ -18,7 +18,6 @@
       maxlength="5"
       v-model="valorTemperatura"
       label="Temperatura em Celsius"
-      @reset="limparCampos"
     />
     <div class="q-pa-lg q-gutter-md text-center">
       <q-btn
@@ -63,21 +62,23 @@ export default {
   },
   methods: {
     async carregar_modelo() {
-      if (this.$q.platform.is.android) {
-        try {
-          this.model = await tf.loadLayersModel("model/model.json");
-        } catch (error) {
-          alert(error);
-        }
-      } else {
-        this.model = await tf.loadLayersModel("model/model.json");
-      }
+      this.model = await tf.loadLayersModel("model/model.json");
     },
     predizerLucroVendas() {
       if (this.valorTemperatura == "") {
-        this.popupTemperaturaNula();
-      } else if (this.valorTemperatura > 60 || this.valorTemperatura < -90) {
-        this.popupTemperaturasInvalidas();
+        this.popup(
+          "Temperatura Nula",
+          'O campo "valor da temperatura" está nulo'
+        );
+      } else if (
+        this.valorTemperatura > 60 ||
+        this.valorTemperatura < -90 ||
+        isNaN(this.valorTemperatura)
+      ) {
+        this.popup(
+          "Temperatura Inválida",
+          "Temperaturas maiores que 60ºC ou menores que -90ºC não são aceitas"
+        );
         this.limparCampos();
       } else {
         let valor = this.model.predict(
@@ -91,22 +92,11 @@ export default {
       this.valorTemperatura = "";
       this.valorPreditoLucro = "";
     },
-    popupTemperaturaNula() {
+    popup(titulo, msg) {
       this.$q
         .dialog({
-          title: "Temperatura Nula",
-          message: 'O campo "valor da temperatura" está nulo'
-        })
-        .onOk(() => {});
-
-      this.limparCampos();
-    },
-    popupTemperaturasInvalidas() {
-      this.$q
-        .dialog({
-          title: "Temperatura Inválida",
-          message:
-            "Temperaturas maiores que 60ºC ou menores que -90ºC não são aceitas"
+          title: titulo,
+          message: msg
         })
         .onOk(() => {});
 
