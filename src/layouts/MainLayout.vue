@@ -1,6 +1,15 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header reveal bordered class="bg-primary text-white">
+      <q-bar class="q-electron-drag electron-only">
+        <div>appSorvete</div>
+
+        <q-space></q-space>
+
+        <q-btn dense flat icon="minimize" @click="minimize"></q-btn>
+        <q-btn dense flat icon="crop_square" @click="maximize"></q-btn>
+        <q-btn dense flat icon="close" @click="closeApp"></q-btn>
+      </q-bar>
       <q-toolbar>
         <q-toolbar-title
           clickable
@@ -65,6 +74,31 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default {
-  name: "MainLayout"
+  name: "MainLayout",
+  methods: {
+    minimize() {
+      if (process.env.MODE === "electron") {
+        this.$q.electron.remote.BrowserWindow.getFocusedWindow().minimize();
+      }
+    },
+
+    maximize() {
+      if (process.env.MODE === "electron") {
+        const win = this.$q.electron.remote.BrowserWindow.getFocusedWindow();
+
+        if (win.isMaximized()) {
+          win.unmaximize();
+        } else {
+          win.maximize();
+        }
+      }
+    },
+
+    closeApp() {
+      if (process.env.MODE === "electron") {
+        this.$q.electron.remote.BrowserWindow.getFocusedWindow().close();
+      }
+    }
+  }
 };
 </script>
