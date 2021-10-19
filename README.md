@@ -1,6 +1,6 @@
-# Lucro_Sorvete (app_sorvete)
+# App Sorvete (sorvete)
 
-Predição de venda de sorvetes com base na temperatura
+Prova de Conceito - Lucro Venda Sorvetes
 
 ## Install the dependencies
 ```bash

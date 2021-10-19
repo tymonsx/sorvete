@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header reveal bordered class="bg-primary text-white">
       <q-bar class="q-electron-drag electron-only">
-        <div>appSorvete</div>
+        <div>App Sorvete</div>
 
         <q-space></q-space>
 
@@ -25,7 +25,7 @@
             />
           </div>
           <div
-            style="width:50%; margin-left:50%; margin-right:50%; word-break: break-all; padding-top: 20px;"
+            style="width:50%; margin-left:50%; margin-right:50%; padding-top: 20px;"
           >
             <span style="font-size:18px;">App Sorvete</span>
             <br />
@@ -35,7 +35,6 @@
         <q-btn icon="info" to="/sobre" flat />
       </q-toolbar>
     </q-header>
-
     <q-footer elevated>
       <q-toolbar>
         <q-toolbar-title>
@@ -43,10 +42,10 @@
             <img style="margin-top: 5px; " width="40px" src="~assets/epm.png" />
           </div>
           <div
-            class="desktop-only text-caption text-center float-left"
+            class="gt-sm text-caption text-center float-left"
             style="width:80%"
           >
-            Rua Botucatu, 862-Térreo, Vila Clementino, São Paulo (SP). Cep:
+            Rua Botucatu, 862-Térreo, Vila Clementino, São Paulo (SP) - CEP:
             04023-062 - Email: contato@dis.epm.br - CNPJ:60.453.032/0001-74
           </div>
           <div
@@ -67,12 +66,7 @@
     </q-page-container>
   </q-layout>
 </template>
-
 <script>
-import Vue from "vue";
-import Vuex from "vuex";
-Vue.use(Vuex);
-
 export default {
   name: "MainLayout",
   methods: {
@@ -81,11 +75,9 @@ export default {
         this.$q.electron.remote.BrowserWindow.getFocusedWindow().minimize();
       }
     },
-
     maximize() {
       if (process.env.MODE === "electron") {
         const win = this.$q.electron.remote.BrowserWindow.getFocusedWindow();
-
         if (win.isMaximized()) {
           win.unmaximize();
         } else {
@@ -93,7 +85,6 @@ export default {
         }
       }
     },
-
     closeApp() {
       if (process.env.MODE === "electron") {
         this.$q.electron.remote.BrowserWindow.getFocusedWindow().close();
